@@ -1,0 +1,14 @@
+---
+- name: install NPM
+  hosts: metrics
+  remote_user: root
+
+  tasks:
+  - name: install npm
+    yum: pkg={{item}} state=latest
+    with_items:
+      - git
+      - nodejs
+      - npm
+
+      
