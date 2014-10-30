@@ -1,0 +1,39 @@
+---
+- hosts: 
+  remote_user: root
+
+  tasks:
+
+  - name: Ensure SELinux is set to permissive
+    selinux: policy=targeted state=permissive
+    ignore_errors: true
+
+  - name: Update All
+    yum: name=* state=latest
+
+  - name: Install ntp
+    yum: name=ntp state=present
+    tags: ntp
+
+  - name: configure ntp file
+    template: src=/etc/ansible/playbooks/linux_provision/templates/ntp.conf dest=/etc/ntp.conf
+    tags: ntp
+
+  - name: Start the NTP service
+    service: name=ntpd state=restarted enabled=true
+    tags: ntp
+
+  - name: Install other things
+    yum: name={{item}} state=present
+    with_items:
+     - nano
+     - perl
+     - net-tools
+
+  - name: Config SSHD
+    template: src=/etc/ansible/playbooks/linux_provision/templates/sshd_config dest=/etc/ssh/sshd_config
+    tags: ssh
+
+  - name: Restart SSHD
+    service: name=sshd state=restarted enabled=true
+    tags: ssh
