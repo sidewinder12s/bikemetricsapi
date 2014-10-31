@@ -57,4 +57,4 @@ var voltageSchema = new Schema({
 
 });
 
-module.exports = voltageSchema;
+mongoose.model("Voltage", voltageSchema);
