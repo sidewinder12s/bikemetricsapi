@@ -13,10 +13,6 @@
 - name: configure ntp file
   copy: src=ntp.conf dest=/etc/ntp.conf backup=yes
   tags: ntp
-
-- name: Start the NTP service
-  service: name=ntpd state=restarted enabled=true
-  tags: ntp
   notify: restart ntpd
 
 - name: Install other things
