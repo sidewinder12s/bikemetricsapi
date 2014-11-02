@@ -1,0 +1,35 @@
+---
+- name: Ensure SELinux is set to permissive
+  selinux: policy=targeted state=permissive
+  ignore_errors: true
+
+- name: Update All
+  yum: name=* state=latest
+
+- name: Install ntp
+  yum: name=ntp state=present
+  tags: ntp
+
+- name: configure ntp file
+  copy: src=ntp.conf dest=/etc/ntp.conf backup=yes
+  tags: ntp
+
+- name: Start the NTP service
+  service: name=ntpd state=restarted enabled=true
+  tags: ntp
+  notify: restart ntpd
+
+- name: Install other things
+  yum: name={{item}} state=present
+  with_items:
+   - nano
+   - perl
+   - net-tools
+   - git
+   - nodejs
+   - npm
+
+- name: Config SSHD
+  copy: src=sshd_config dest=/etc/ssh/sshd_config backup=yes
+  tags: ssh
+  notify: restart sshd
