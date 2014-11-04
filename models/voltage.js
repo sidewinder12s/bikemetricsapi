@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var voltageSchema = new Schema({
+var voltageSchema = Schema({
 
     cell1: Number,
     cell2: Number,
