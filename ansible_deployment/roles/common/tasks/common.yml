@@ -28,6 +28,7 @@
    - git
    - nodejs
    - npm
+   - mongodb
 
 - name: Config SSHD
   copy: src=sshd_config dest=/etc/ssh/sshd_config backup=yes
