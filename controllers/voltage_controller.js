@@ -22,5 +22,19 @@ module.exports = {
         });
 
 
+    },
+
+    addvoltage: function(req, res) {
+        //return res.send(req.body);
+        var voltage = new Voltage(req.body);
+        return voltage.save(function (err) {
+                if (err) {
+                    return res.send(err);
+                }
+                return res.send({result: "Success"});
+            }
+
+
+        );
     }
 };

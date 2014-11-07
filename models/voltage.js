@@ -52,7 +52,8 @@ var voltageSchema = Schema({
     cell47: Number,
     cell48: Number,
 
-    time: Date,
+    timeSent: Date,
+    timeReceived: Date,
     bikeID: Number
 
 });
