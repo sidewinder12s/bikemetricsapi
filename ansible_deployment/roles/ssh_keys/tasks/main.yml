@@ -1,0 +1,9 @@
+---
+#- name: Add itsadmin
+#  user: name=itsadmin groups=wheel append=yes password=
+
+- name: Add SSH keys to system
+  authorized_key: user=evt key="{{ item }}" state=present
+  with_file:
+   - public_keys/gow4272
+#   - public_keys/
