@@ -1,0 +1,9 @@
+---
+- name: shutdown API app
+
+- name: pull git repo
+  git: repo=git://bitbucket.org:evt/bikemetricsapi.git
+       dest=/opt/api
+       version=master
+
+- name: npm path=/opt/api
