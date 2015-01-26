@@ -33,9 +33,10 @@ fs.readdirSync(models_path).forEach( function(file) {
 
 var app = express();
 
-app.use(morgan());
+app.use(morgan('combined'));
 app.use(compression());
-app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride());
 
 var voltage_routes = require("./routes/voltage_routes.js");
