@@ -6,6 +6,8 @@ var compression = require('compression');
 var methodOverride = require('method-override');
 var fs = require('fs');
 
+var routes = require('./routes');
+
 var mongoose = require("mongoose");
 var connect = function() {
     mongoose.connect('mongodb://localhost/bike-metrics-dev');
@@ -22,15 +24,6 @@ mongoose.connection.on('disconnected', function() {
 
 var voltageModel = require("./models/voltage.js");
 
-/*
-var models_path = __dirname + '/models';
-fs.readdirSync(models_path).forEach( function(file) {
-    if (~file.indexOf(".js")) require(models_path + '/' + file);
-});
-*/
-
-
-
 var app = express();
 
 app.use(morgan('combined'));
@@ -39,8 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride());
 
-var voltage_routes = require("./routes/voltage_routes.js");
-app.use("/api", voltage_routes);
+routes(app);
 
 
 app.listen(3000);
