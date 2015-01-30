@@ -5,3 +5,6 @@
 
   roles:
     - common
+    - ssh_keys
+    - API
+    - front_end
