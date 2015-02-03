@@ -53,9 +53,12 @@ var voltageSchema = Schema({
     cell48: Number,
 
     timeSent: Date,
-    timeReceived: Date,
     bikeID: Number
 
 });
+
+voltageSchema.methods.findByDateRange = function(startDate, endDate, cb) {
+  return this.model('Voltage').find({"time": {"$gte": startDate, "$lte": endDate}}, cb)
+};
 
 mongoose.model("Voltage", voltageSchema);
