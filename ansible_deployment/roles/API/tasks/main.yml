@@ -1,5 +1,7 @@
 ---
-#Put build here?
+- name: npm install
+  connection: local
+  npm: path=/package.json
 
 - name: "Check list of Node.js apps running."
   command: forever list
@@ -7,22 +9,9 @@
   changed_when: false
 
 - name: "stop forever API node.js if running"
-  command: forever stop /opt/api/app.js
-  when: "forever_list.stdout.find('/opt/api/app.js') == -1"
+  command: forever stop /opt/api/package.json
+  when: "forever_list.stdout.find('/opt/api/app.js') == 1"
 
 - name: pull git repo
-  git: repo=git://bitbucket.org:evt/bikemetricsapi.git
-       dest=/opt/api
-       version=master
-
-- name: "Install forever (to run Node.js app)."
-  npm: name=forever global=yes state=latest
-
-- name: "Check list of Node.js apps running."
-  command: forever list
-  register: forever_list
-  changed_when: false
-
-- name: "Start example Node.js app."
-  command: forever start /opt/api/app.js
-  when: "forever_list.stdout.find('/opt/api/app.js') == -1"
+  synchronize: src=/ dest=/opt/api
+  notify: restart forever
