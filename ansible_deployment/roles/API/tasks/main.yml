@@ -10,7 +10,7 @@
 
 - name: "stop forever API node.js if running"
   command: forever stop /opt/api/package.json
-  when: "forever_list.stdout.find('/opt/api/app.js') == 1"
+  when: "forever_list.stdout.find('/opt/api/package.json') == 1"
 
 - name: pull git repo
   synchronize: src=/ dest=/opt/api
