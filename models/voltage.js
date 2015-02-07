@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var voltageSchema = new Schema({
+var voltageSchema = Schema({
 
     cell1: Number,
     cell2: Number,
@@ -52,9 +52,10 @@ var voltageSchema = new Schema({
     cell47: Number,
     cell48: Number,
 
-    time: Date,
+    timeSent: Date,
+    timeReceived: Date,
     bikeID: Number
 
 });
 
-module.exports = voltageSchema;
+mongoose.model("Voltage", voltageSchema);
