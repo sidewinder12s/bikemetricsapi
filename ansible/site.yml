@@ -1,6 +1,6 @@
 ---
 - name: Common install
-  hosts: all
+  hosts: evt-metrics.rit.edu
   remote_user: root
 
   roles:

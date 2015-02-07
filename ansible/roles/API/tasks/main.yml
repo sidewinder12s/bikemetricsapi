@@ -1,7 +1,7 @@
 ---
 - name: npm install
   connection: local
-  npm: path=/package.json
+  npm: path=package.json
 
 - name: "Check list of Node.js apps running."
   command: forever list
