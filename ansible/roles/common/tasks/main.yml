@@ -15,9 +15,9 @@
   tags: ntp
   notify: restart ntpd
 
-- name: set timezone
-  command: timedatectl set-timezone America/New_York
-  tags: timezone
+#- name: set timezone
+#  command: timedatectl set-timezone America/New_York
+#  tags: timezone
 
 - name: Install other things
   yum: name={{item}} state=present
