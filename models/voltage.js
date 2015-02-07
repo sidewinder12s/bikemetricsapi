@@ -57,8 +57,8 @@ var voltageSchema = Schema({
 
 });
 
-voltageSchema.methods.findByDateRange = function(startDate, endDate, cb) {
-  return this.model('Voltage').find({"time": {"$gte": startDate, "$lte": endDate}}, cb)
+voltageSchema.statics.findByDateRange = function(startDate, endDate, cb) {
+  return this.model('Voltage').find({"timeSent": {"$gte": startDate, "$lte": endDate}}, cb)
 };
 
 mongoose.model("Voltage", voltageSchema);

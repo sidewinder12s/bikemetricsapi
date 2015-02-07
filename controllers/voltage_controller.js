@@ -7,32 +7,35 @@ var Voltage = mongoose.model("Voltage");
 module.exports = {
     getvoltage: function(req, res) {
 
-        var start = req.params.startTime;
-        var end = req.params.endTIme;
 
+        //console.log(req.query);
 
-        if(req.params["startTime"] && req.params["endTime"]) {
+        if(req.query["startTime"] && req.query["endTime"]) {
 
-            var startDate = new Date(req.params["startTime"]);
-            var endDate = new Date(req.params["endTime"]);
+            //console.log(req.query);
+
+            var startDate = new Date(req.query["startTime"]);
+            var endDate = new Date(req.query["endTime"]);
+            console.log(startDate);
+            console.log(endDate);
 
             // get data
-            Voltage.findByDateRange(new startDate, endDate, function(err, data) {
+
+
+            Voltage.findByDateRange(startDate, endDate, function(err, data) {
                 if(!err) {
                     // do stuff
+                    return res.send(data);
                 }
             });
-        }
-
-
-
-         else {
+            return;
+        } else {
             //res.send(400, "Bad Request");
             Voltage.find(function(err, data) {
                 if(!err) {
-                    res.send(data);
+                    return res.send(data);
                 } else {
-                    res.send(err);
+                    return res.send(err);
                 }
             });
             return;

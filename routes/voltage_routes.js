@@ -5,7 +5,8 @@ var express = require("express");
 var router = express.Router();
 
 router.route("/")
-  .get(controller.getvoltage)
+    .get(controller.getvoltage)
+  //.get(controller.getvoltage)
   .post(controller.addvoltage);
 
 module.exports = function(app) {
