@@ -1,6 +1,6 @@
 ---
 - name: npm install/build locally
-  local_action: npm path='/var/lib/jenkins/workspace/API Deployment/package.json'
+  local_action: npm path='/var/lib/jenkins/workspace/API Deployment'
 
 - name: "Check list of Node.js apps running."
   command: forever list
