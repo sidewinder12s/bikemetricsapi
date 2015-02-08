@@ -5,15 +5,15 @@
 #- name: start forever
 #  command: forever start
 
-- name: "Check list of Node.js apps running."
-  command: forever list
-  register: forever_list
+#- name: "Check list of Node.js apps running."
+#  command: forever list
+#  register: forever_list
   #changed_when: false
 
-- name: "stop forever API node.js if running"
-  command: forever stop /opt/api/package.json
-  when: "forever_list.stdout.find('/opt/api/package.json') == 1"
+#- name: "stop forever API node.js if running"
+#  command: forever stop /opt/api/package.json
+#  when: "forever_list.stdout.find('/opt/api/package.json') == 1"
 
 - name: pull git repo
-  synchronize: src=/ dest=/opt/api
+  synchronize: src='/var/lib/jenkins/workspace/API Deployment' dest=/opt/api
   notify: restart forever
