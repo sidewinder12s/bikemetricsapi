@@ -2,10 +2,13 @@
 - name: npm install/build locally
   local_action: npm path='/var/lib/jenkins/workspace/API Deployment'
 
+#- name: start forever
+#  command: forever start
+
 - name: "Check list of Node.js apps running."
   command: forever list
   register: forever_list
-  changed_when: false
+  #changed_when: false
 
 - name: "stop forever API node.js if running"
   command: forever stop /opt/api/package.json
