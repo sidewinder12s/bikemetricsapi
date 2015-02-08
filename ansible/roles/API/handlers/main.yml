@@ -6,4 +6,4 @@
   service: name=sshd state=restarted enabled=true
 
 - name: restart forever
-  command: forever restart /opt/api/package.json
+  command: forever start /opt/api/app.js
