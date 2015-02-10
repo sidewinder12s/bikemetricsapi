@@ -1,6 +1,6 @@
 ---
-#- name: Add itsadmin
-#  user: name=itsadmin groups=wheel append=yes password=
+#- name: Add
+#  user: name=evt groups=wheel append=yes password=
 
 - name: Add SSH keys to system
   authorized_key: user=evt key="{{ item }}" state=present
