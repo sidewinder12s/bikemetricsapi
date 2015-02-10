@@ -6,6 +6,10 @@
 - name: Update All
   yum: name=* state=latest
 
+- name: Install epel repo
+  yum: name=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present
+  tags: epel
+
 - name: Install ntp
   yum: name=ntp state=present
   tags: ntp
@@ -35,11 +39,7 @@
   tags: ssh
   notify: restart sshd
 
-- name: Install epel repo
-  yum: name=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present
-  tags: epel
-
 - name: "Install forever (to run Node.js app)."
   npm: name=forever global=yes state=latest
 
-# testing 12
+# testing 11
