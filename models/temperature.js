@@ -9,4 +9,4 @@ var temperatureSchema = new Schema({
 
 });
 
-module.exports = temperatureSchema;
+mongoose.model("Temperature", temperatureSchema);

@@ -9,4 +9,4 @@ var currentSchema = new Schema({
 
 });
 
-module.exports = currentSchema;
+mongoose.model("Current", currentSchema);
